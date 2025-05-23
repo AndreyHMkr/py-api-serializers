@@ -9,6 +9,8 @@ class GenreSerializer(serializers.ModelSerializer):
 
 
 class ActorSerializer(serializers.ModelSerializer):
+    full_name = serializers.SerializerMethodField()
+
     class Meta:
         model = Actor
         fields = ("id",
@@ -16,6 +18,9 @@ class ActorSerializer(serializers.ModelSerializer):
                   "last_name",
                   "full_name"
                   )
+
+    def get_full_name(self, obj):
+        return obj.full_name
 
 
 class MovieSerializer(serializers.ModelSerializer):
